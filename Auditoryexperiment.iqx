@@ -1,0 +1,65 @@
+﻿
+*************************************
+
+******* Play Sounds *****************
+*************************************
+<block myblock>
+/ trials = [1 = mytrial]
+</block>
+<trial mytrial>
+/ stimulusframes = [1=Initialinstructions]
+/ validresponse = (57)
+</trial>
+<text Initialinstructions>
+/items = myinstructions
+/ select = sequence
+</text>
+
+<item myinstructions>
+/1 = "Welcome to the experiment !"
+/2= "Listen to the following sounds and rate how similar the sounds are."
+</item>
+
+
+
+<sound test_sound1>
+/items = ("Ba sound recording.wav","Ga sound recording.wav")
+/ playthrough = TRUE
+</sound>
+
+<sound test_sound2>
+/items = ("Ba sound recording.wav","Ga sound recording.wav")
+/ playthrough = TRUE
+</sound>
+
+<trial sound_test>
+/stimulustimes = [100 = replace(test_sound1); 1100 = replace(test_sound2)]
+/trialduration = 4000
+
+</trial>
+
+**practice block control
+<block practice>
+/trials = [1 = trial.sound_test]
+/ recorddata = true
+
+</block>
+
+
+<text Instruction_Page_2>
+/ items = ("On this page, please decide the dissimilarity level of the colour of the 2 circles with a BLACK edge.")
+/ items = ("On this page, please decide the dissimilarity level of the colour of the 2 circles that were marked by the black arrows. 
+Ignore any size differences.
+
+0 => most similar colour (least dissimilar colour)")
+</text>
+<defaults>
+/ minimumversion = "5.0.12.0"
+/ fontstyle = ("Arial", 3%, false, false, false, false, 5, 1)
+/ txbgcolor = black
+/ txcolor = white
+/ screencolor = aqua
+
+</defaults>
+
+
