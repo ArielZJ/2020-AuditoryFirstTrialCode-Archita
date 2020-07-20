@@ -2,6 +2,7 @@
 / blocks = [1=consent;2=myblock;3=InitialMonosyllabicSounds]
 </expt>
 
+
 **********block for coding in consent form********************
 <block consent>
 / trials = [1=consent]
@@ -16,9 +17,9 @@
 <html myconsentform>
 / items = ("consent_form.html")
 </html>
-
+********block for initial instructions********************
 <block myblock>
-/ trials = [1-2 = mytrial]
+/ trials = [1-3 = mytrial]
 </block>
 
 <trial mytrial>
@@ -32,39 +33,46 @@
 </text>
 
 <item myitems>
-/ 1 = "Welcome to the experiment!"
-/ 2 = "Listen to the following monosyllabic sounds are rate how similar they are
-9= most similar 
-0 = least similar"
+/ 1 = "Welcome to the experiment!
+This experiment should take approximately 20 minutes.
+Please press the [space bar] to continue."
+/ 2 = "In this experiment you will be asked to listen to two different sounds each separated by a time interval 
+of approximately 1 second.
+You will be asked to rate how similar the two sounds are on a scale from 0-9.
+Please press the [space bar] to continue."
+/3 = "Should you need to quit the experiment at any time please press Ctrl +Q to exit the experiment.
+Please press the [space bar ] to continue."
 </item>
 
 
-*************First monosylabic and tone discrimination trial*********************
+*************First monosylabic and tone discrimination block*********************
 
 <block InitialMonosyllabicSounds>
-/ trials = [1-10=Firstsounds]
+/ trials = [1-6=Firstsounds;7-10=Tonesounds]
 </block>
 
-
+************Trial for distinguishing Monosyllabic sounds***********************
 <trial Firstsounds>
 / stimulustimes = [0=soundpartA; 50 = MonosyllabicInstructions; 2500 =soundpartB;]
 / validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
-
 </trial>
 
 <text MonosyllabicInstructions>
 /items = monoinstructions
 </text>
+
 <item monoinstructions>
 /1 = "Listen to the following monosyllabic sounds and rate how similar they are
-9= most similar 
-0 = least similar"
+0 = least similar 
+9 = most similar"
 </item>
 
+***********Used a counter to randomly select the two sounds***********************
 <counter soundselector>
-/ select = noreplace(1, 2, 3, 4, 5, 6, 7, 8)
+/ select = noreplace(1, 2, 3, 4, 5)
 / selectionrate = always
 </counter>
+
 <sound soundpartA>
 /items = greatsounds
 / select = soundselector
@@ -73,7 +81,6 @@
 <sound soundpartB>
 /items = greatsounds
 / select = soundselector
-
 </sound>
 
 <item greatsounds>
@@ -82,9 +89,42 @@
 /3 = "Ta sound recording.wav"
 /4 = "Ga sound recording.wav"
 /5 = "Da sound recording.wav"
-/6 = "Low Tone Sound recording.wav"
-/7 = "Medium Tone recording.wav"
-/8 = "High Tone sound recording.wav"
+</item>
+************Trial for distinguishing three different tones***********************
+
+<trial Tonesounds>
+/ stimulustimes = [0=tonepartA; 50 = ToneInstructions; 2500 =tonepartB]
+/ validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
+</trial>
+
+<text ToneInstructions>
+/ items = Tone_I
+</text>
+
+<item Tone_I>
+/ 1  = "Listen to the 2 tones played and rate how similar they are
+0 = least similar
+9 = most simialr"
 </item>
 
+<counter toneselector>
+/ select = noreplace(1, 2, 3)
+/ selectionrate = always
+</counter>
+
+<sound tonepartA>
+/ items = tonesounds
+/ select = toneselector
+</sound>
+
+<sound tonepartB>
+/ items = tonesounds
+/ select = toneselector
+</sound>
+
+<item tonesounds>
+/1 = "Low Tone Sound recording.wav"
+/2 = "Medium Tone recording.wav"
+/3 = "High Tone sound recording.wav"
+</item>
 

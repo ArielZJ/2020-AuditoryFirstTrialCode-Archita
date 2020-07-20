@@ -1,0 +1,5 @@
+date	time	group	subject	session	build	blocknum	trialnum	blockcode	trialcode	pretrialpause	posttrialpause	trialduration	trialtimeout	response	correct	latency	stimulusnumber1	stimulusitem1	stimulusonset1	stimulusnumber2	stimulusitem2	stimulusonset2	stimulusnumber3	stimulusitem3	stimulusonset3
+2020-07-20	16:54:47	1	1	1	6.2.1	1	1	consent	consent	0	0	0	0	57	0	1612	1	consent_form.html	216	0	0	0	0	0	0
+2020-07-20	16:54:47	1	1	1	6.2.1	2	1	myblock	mytrial	0	0	0	0	57	0	1586	1	Welcome to the experiment!  This experiment should take approximately 20 minutes.  Please press the [space bar] to continue.	51	0	0	0	0	0	0
+2020-07-20	16:54:47	1	1	1	6.2.1	2	2	myblock	mytrial	0	0	0	0	57	0	4080	2	In this experiment you will be asked to listen to two different sounds each separated by a time interval   of approximately 1 second.  You will be asked to rate how similar the two sounds are on a scale from 0-9.	4	0	0	0	0	0	0
+2020-07-20	16:54:47	1	1	1	6.2.1	2	3	myblock	mytrial	0	0	0	0	Ctrl+'Q'	1	4620	3	Should you need to quit the experiment at any time please press Ctrl +Q to exit the experiment	6	0	0	0	0	0	0
