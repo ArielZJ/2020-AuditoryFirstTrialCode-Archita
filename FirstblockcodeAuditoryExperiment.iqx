@@ -1,0 +1,90 @@
+﻿<expt Auditory>
+/ blocks = [1=consent;2=myblock;3=InitialMonosyllabicSounds]
+</expt>
+
+**********block for coding in consent form********************
+<block consent>
+/ trials = [1=consent]
+</block>
+
+<trial consent>
+/ stimulusframes = [1=myconsentform]
+/ validresponse = (57)
+</trial>
+
+
+<html myconsentform>
+/ items = ("consent_form.html")
+</html>
+
+<block myblock>
+/ trials = [1-2 = mytrial]
+</block>
+
+<trial mytrial>
+/ stimulusframes = [1=mytext]
+/ validresponse = (57)
+</trial>
+
+<text mytext>
+/ items = myitems
+/ select = sequence
+</text>
+
+<item myitems>
+/ 1 = "Welcome to the experiment!"
+/ 2 = "Listen to the following monosyllabic sounds are rate how similar they are
+9= most similar 
+0 = least similar"
+</item>
+
+
+*************First monosylabic and tone discrimination trial*********************
+
+<block InitialMonosyllabicSounds>
+/ trials = [1-10=Firstsounds]
+</block>
+
+
+<trial Firstsounds>
+/ stimulustimes = [0=soundpartA; 50 = MonosyllabicInstructions; 2500 =soundpartB;]
+/ validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
+
+</trial>
+
+<text MonosyllabicInstructions>
+/items = monoinstructions
+</text>
+<item monoinstructions>
+/1 = "Listen to the following monosyllabic sounds and rate how similar they are
+9= most similar 
+0 = least similar"
+</item>
+
+<counter soundselector>
+/ select = noreplace(1, 2, 3, 4, 5, 6, 7, 8)
+/ selectionrate = always
+</counter>
+<sound soundpartA>
+/items = greatsounds
+/ select = soundselector
+</sound>
+
+<sound soundpartB>
+/items = greatsounds
+/ select = soundselector
+
+</sound>
+
+<item greatsounds>
+/1 = "Ba sound recording.wav"
+/2= "Ka sound recording.wav"
+/3 = "Ta sound recording.wav"
+/4 = "Ga sound recording.wav"
+/5 = "Da sound recording.wav"
+/6 = "Low Tone Sound recording.wav"
+/7 = "Medium Tone recording.wav"
+/8 = "High Tone sound recording.wav"
+</item>
+
+
