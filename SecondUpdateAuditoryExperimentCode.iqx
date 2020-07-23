@@ -1,0 +1,199 @@
+﻿
+<expt Auditory>
+/ blocks = [1=consent;2=myblock;3=InitialMonosyllabicSounds;4=mytone]
+</expt>
+
+
+**********block for coding in consent form********************
+<block consent>
+/ trials = [1=consent]
+</block>
+
+<trial consent>
+/ stimulusframes = [1=myconsentform]
+/ validresponse = (57)
+</trial>
+
+
+<html myconsentform>
+/ items = ("consent_form.html")
+</html>
+********block for initial instructions********************
+<block myblock>
+/ trials = [1-3 = mytrial]
+</block>
+
+<trial mytrial>
+/ stimulusframes = [1=mytext]
+/ validresponse = (57)
+</trial>
+
+<text mytext>
+/ items = myitems
+/ select = sequence
+</text>
+
+<item myitems>
+/ 1 = "Welcome to the experiment!
+This experiment should take approximately 20 minutes.
+Please press the [space bar] to continue."
+/ 2 = "In this experiment you will be asked to listen to two different sounds each separated by a time interval 
+of approximately 1 second.
+You will be asked to rate how similar the two sounds are on a scale from 0-9.
+Please press the [space bar] to continue."
+/3 = "Should you need to quit the experiment at any time please press Ctrl +Q to exit the experiment.
+Please press the [space bar ] to continue."
+</item>
+
+
+*************First monosylabic discrimination block*********************
+
+<values>
+/ myvalue = 1
+</values>
+
+<block InitialMonosyllabicSounds>
+/ trials = [1-25=noreplace(monosyl1,monosyl2,monosyl3,monosyl4, monosyl5)]
+</block>
+
+<trial monosyl1>
+/ ontrialbegin = [values.myvalue=list.monosyl1items.nextindex]
+/ stimulustimes = [0=monosylsound;50 = MonosyllabicInstructions;2500= monosylname]
+/ validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
+</trial>
+
+<trial monosyl2>
+/ ontrialbegin = [values.myvalue=list.monosyl2items.nextindex]
+/ stimulustimes = [0=monosylsound;50 = MonosyllabicInstructions;2500= monosylname]
+/ validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
+</trial>
+
+<trial monosyl3>
+/ ontrialbegin = [values.myvalue=list.monosyl3items.nextindex]
+/ stimulustimes = [0=monosylsound;50 = MonosyllabicInstructions;2500= monosylname]
+/ validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
+</trial>
+
+<trial monosyl4>
+/ ontrialbegin = [values.myvalue=list.monosyl4items.nextindex]
+/ stimulustimes = [0=monosylsound;50 = MonosyllabicInstructions;2500= monosylname]
+/ validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
+</trial>
+<trial monosyl5>
+/ ontrialbegin = [values.myvalue=list.monosyl5items.nextindex]
+/ stimulustimes = [0=monosylsound;50 = MonosyllabicInstructions;2500= monosylname]
+/ validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
+</trial>
+<sound monosylsound>
+/ items = mymonosyl
+/ select = values.myvalue
+</sound>
+
+<item mymonosyl>
+/1 = "Ba sound recording.wav"
+/2= "Ka sound recording.wav"
+/3 = "Ta sound recording.wav"
+/4 = "Ga sound recording.wav"
+/5 = "Da sound recording.wav"
+</item>
+
+<sound monosylname>
+/ items = mymonosyl
+/ select = script.currenttrial
+
+</sound>
+
+<list monosyl1items>
+/ poolsize = 5
+</list>
+
+<list monosyl2items>
+/ poolsize = 5
+</list>
+
+<list monosyl3items>
+/ poolsize = 5
+</list>
+
+<list monosyl4items>
+/ poolsize = 5
+</list>
+
+<list monosyl5items>
+/ poolsize = 5
+</list>
+<text MonosyllabicInstructions>
+/items = monoinstructions
+</text>
+
+<item monoinstructions>
+/1 = "Listen to the following monosyllabic sounds and rate how similar they are
+0 = least similar 
+9 = most similar"
+</item>
+
+
+************Trial for distinguishing three different tones***********************
+
+
+<block mytone>
+/ trials = [1-9=noreplace(tone1,tone2,tone3)]
+</block>
+
+<trial tone1>
+/ ontrialbegin = [values.myvalue=list.tone1items.nextindex]
+/ stimulustimes = [0=tones;50 = ToneInstructions;2500= trialname]
+/ validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
+</trial>
+
+<trial tone2>
+/ ontrialbegin = [values.myvalue=list.tone2items.nextindex]
+/ stimulustimes = [0=tones;50 = ToneInstructions;2500= trialname]
+/ validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
+</trial>
+
+<trial tone3>
+/ ontrialbegin = [values.myvalue=list.tone3items.nextindex]
+/ stimulustimes = [0=tones;50 = ToneInstructions;2500= trialname]
+/ validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
+</trial>
+
+
+<sound tones>
+/ items = mytones
+/ select = values.myvalue
+</sound>
+
+<item mytones>
+/1 = "Low Tone Sound recording.wav"
+/2 = "Medium Tone recording.wav"
+/3 = "High Tone sound recording.wav"
+
+</item>
+
+<sound trialname>
+/ items = mytones
+/ select = script.currenttrial
+
+</sound>
+
+<list tone1items>
+/ poolsize = 3
+</list>
+
+<list tone2items>
+/ poolsize = 3
+</list>
+
+<list tone3items>
+/ poolsize = 3
+</list>
+<text ToneInstructions>
+/ items = Tone_I
+</text>
+
+<item Tone_I>
+/ 1  = "Listen to the 2 tones played and rate how similar they are
+0 = least similar
+9 = most simialr"
+</item>
