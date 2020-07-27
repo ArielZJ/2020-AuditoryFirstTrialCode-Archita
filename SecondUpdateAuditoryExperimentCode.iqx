@@ -1,6 +1,6 @@
-﻿
+﻿***********Main control of experiment***********************
 <expt Auditory>
-/ blocks = [1=consent;2=myblock;3=InitialMonosyllabicSounds;4=mytone]
+/ blocks = [1=consent;2=myblock;3=Practice;4=InitialMonosyllabicSounds;5=mytone]
 </expt>
 
 
@@ -39,13 +39,194 @@ This experiment should take approximately 20 minutes.
 Please press the [space bar] to continue."
 / 2 = "In this experiment you will be asked to listen to two different sounds each separated by a time interval 
 of approximately 1 second.
-You will be asked to rate how similar the two sounds are on a scale from 0-9.
+You will be asked to rate how similar the two sounds are on a scale from 0-7.
 Please press the [space bar] to continue."
 /3 = "Should you need to quit the experiment at any time please press Ctrl +Q to exit the experiment.
 Please press the [space bar ] to continue."
 </item>
+*********Practice trial*******************
+<block Practice>
+/ trials = [1-8= Practicetrial;9-11=PracticeRun;12=Finishedpracticerun]
+
+</block>
+
+<trial Practicetrial>
+/ stimulusframes = [1 = Pracinstructionstext; 1 = myeightsounds]
+/ validresponse = (57)
+
+</trial>
+<text Pracinstructionstext>
+/ items = Practiceinstructions
+</text>
+
+<item Practiceinstructions>
+/1 = "In this experiment you will be hearing the following 8 sounds
+Press [Space Bar] to continue"
+</item>
+
+<sound myeightsounds>
+/ items = eightsounds
+/ select = sequence
+</sound>
 
 
+<item eightsounds>
+/1 = "Low Tone Sound recording.wav"
+/2 = "Medium Tone recording.wav"
+/3 = "High Tone sound recording.wav"
+/4 = "Ba sound recording.wav"
+/5= "Ka sound recording.wav"
+/6 = "Ta sound recording.wav"
+/7 = "Ga sound recording.wav"
+/8 = "Da sound recording.wav"
+</item>
+<trial Finishedpracticerun>
+/ stimulusframes = [1=Finishtex]
+/ validresponse = (57)
+
+</trial>
+<text Finishtex>
+/ items = ("Congratulations you have now finished your practice trials.
+The real trial will begin shortly.
+Press [space bar] to continue.")
+
+</text>
+<trial PracticeRun>
+/ stimulustimes = [0=Practicesoundsparta; 50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton; 2500=Practicesoundspartb]
+/ validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
+/ inputdevice = mouse
+/ branch = [
+	trial.centremouse
+]
+</trial>
+<sound Practicesoundsparta>
+/ items = Practicesounds
+/ select = noreplace
+</sound>
+<sound Practicesoundspartb>
+/items = Practicesounds
+/ select = noreplace
+</sound>
+
+
+<item Practicesounds>
+/1 = "Practice tone 1.wav"
+/2 = "Practice Tone 3.wav"
+/3 = "Practice Tone 2.wav"
+/4 = "Practice Tone 4.wav"
+</item>
+
+
+******* The following are for coding in the answer choices for all the trials this will be done by clicking on the screen*****************************
+<text mousecentre>
+/ items = ("Please click the centre square to continue")
+/ txbgcolor = black
+/ txcolor = white
+/ size = (15%,15%)
+/ position = (80%, 50%)
+
+</text>
+
+<trial centremouse>
+/ inputdevice = mouse
+/ stimulusframes = [1= Quit_Notice, mousecentre, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton]
+/ recorddata = true
+/ validresponse = (centrebutton)
+</trial>
+
+
+<text stimulus>
+/ items = ("Please listen to the following sounds and determine how similar they are
+0= most dissimilar
+7 = most similar")
+/ position = (80%, 50%)
+</text>
+<text Quit_Notice>
+/ items = ("Should you need to quit at any point in time please press Ctrl+Q")
+/ position = (80%,80%)
+
+</text>
+
+<text zerobutton>
+/ items = ("0")
+/ size = (10%, 10%)
+/ position = (20%, 20%)
+/ txbgcolor = black
+/ txcolor = white
+/ vjustify = center
+</text>
+
+<text onebutton>
+/ items = ("1")
+/size = (10%, 10%)
+/ position = (35%, 20%)
+/ txbgcolor = black
+/ txcolor = white
+/ vjustify = center
+</text>
+
+<text twobutton>
+/ items = ("2")
+/size = (10%, 10%)
+/ position = (50%, 20%)
+/ txbgcolor = black
+/ txcolor = white
+/ vjustify = center
+</text>
+
+<text sevenbutton>
+/ items = ("7")
+/size = (10%, 10%)
+/ position = (20%, 40%)
+/ txbgcolor = black
+/ txcolor = white
+/ vjustify = center
+</text>
+
+<text centrebutton>
+/ items = ("centre")
+/size = (10%, 10%)
+/ position = (35%, 40%)
+/ txbgcolor = black
+/ txcolor = white
+/ vjustify = center
+</text>
+
+<text threebutton>
+/ items = ("3")
+/size = (10%, 10%)
+/ position = (50%, 40%)
+/ txbgcolor = black
+/ txcolor = white
+/ vjustify = center
+</text>
+
+<text sixbutton>
+/ items = ("6")
+/size = (10%, 10%)
+/ position = (20%, 60%)
+/ txbgcolor = black
+/ txcolor = white
+/ vjustify = center
+</text>
+
+<text fivebutton>
+/ items = ("5")
+/size = (10%, 10%)
+/ position = (35%, 60%)
+/ txbgcolor = black
+/ txcolor = white
+/ vjustify = center
+</text>
+
+<text fourbutton>
+/ items = ("4")
+/size = (10%, 10%)
+/ position = (50%, 60%)
+/ txbgcolor = black
+/ txcolor = white
+/ vjustify = center
+</text>
 *************First monosylabic discrimination block*********************
 
 <values>
@@ -58,32 +239,54 @@ Please press the [space bar ] to continue."
 
 <trial monosyl1>
 / ontrialbegin = [values.myvalue=list.monosyl1items.nextindex]
-/ stimulustimes = [0=monosylsound;50 = MonosyllabicInstructions;2500= monosylname]
-/ validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
+/ stimulustimes = [0=monosylsound;50 =stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton;2500= monosylname]
+/ validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
+/ inputdevice = mouse
+/ branch = [
+	trial.centremouse
+]
 </trial>
 
 <trial monosyl2>
 / ontrialbegin = [values.myvalue=list.monosyl2items.nextindex]
-/ stimulustimes = [0=monosylsound;50 = MonosyllabicInstructions;2500= monosylname]
-/ validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
+/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton;2500= monosylname]
+/ validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
+/ inputdevice = mouse
+/ branch = [
+	trial.centremouse
+]
 </trial>
 
 <trial monosyl3>
 / ontrialbegin = [values.myvalue=list.monosyl3items.nextindex]
-/ stimulustimes = [0=monosylsound;50 = MonosyllabicInstructions;2500= monosylname]
-/ validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
+/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton;2500= monosylname]
+/ validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
+/ inputdevice = mouse
+/ branch = [
+	trial.centremouse
+]
 </trial>
 
 <trial monosyl4>
 / ontrialbegin = [values.myvalue=list.monosyl4items.nextindex]
-/ stimulustimes = [0=monosylsound;50 = MonosyllabicInstructions;2500= monosylname]
-/ validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
+/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton;2500= monosylname]
+/ validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
+/ inputdevice = mouse
+/ branch = [
+	trial.centremouse
+]
 </trial>
 <trial monosyl5>
 / ontrialbegin = [values.myvalue=list.monosyl5items.nextindex]
-/ stimulustimes = [0=monosylsound;50 = MonosyllabicInstructions;2500= monosylname]
-/ validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
+/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton;2500= monosylname]
+/ validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
+/ inputdevice = mouse
+/ branch = [
+	trial.centremouse
+]
 </trial>
+
+
 <sound monosylsound>
 / items = mymonosyl
 / select = values.myvalue
@@ -122,15 +325,6 @@ Please press the [space bar ] to continue."
 <list monosyl5items>
 / poolsize = 5
 </list>
-<text MonosyllabicInstructions>
-/items = monoinstructions
-</text>
-
-<item monoinstructions>
-/1 = "Listen to the following monosyllabic sounds and rate how similar they are
-0 = least similar 
-9 = most similar"
-</item>
 
 
 ************Trial for distinguishing three different tones***********************
@@ -142,20 +336,32 @@ Please press the [space bar ] to continue."
 
 <trial tone1>
 / ontrialbegin = [values.myvalue=list.tone1items.nextindex]
-/ stimulustimes = [0=tones;50 = ToneInstructions;2500= trialname]
-/ validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
+/ stimulustimes = [0=tones;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton;2500= trialname]
+/ validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
+/ inputdevice = mouse
+/ branch = [
+	trial.centremouse
+]
 </trial>
 
 <trial tone2>
 / ontrialbegin = [values.myvalue=list.tone2items.nextindex]
-/ stimulustimes = [0=tones;50 = ToneInstructions;2500= trialname]
-/ validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
+/ stimulustimes = [0=tones;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton;2500= trialname]
+/ validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
+/ inputdevice = mouse
+/ branch = [
+	trial.centremouse
+]
 </trial>
 
 <trial tone3>
 / ontrialbegin = [values.myvalue=list.tone3items.nextindex]
-/ stimulustimes = [0=tones;50 = ToneInstructions;2500= trialname]
-/ validresponse = ("1","2", "3", "4", "5", "6", "7", "8", "9", "0")
+/ stimulustimes = [0=tones;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton;2500= trialname]
+/ validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
+/ inputdevice = mouse
+/ branch = [
+	trial.centremouse
+]
 </trial>
 
 
@@ -188,12 +394,4 @@ Please press the [space bar ] to continue."
 <list tone3items>
 / poolsize = 3
 </list>
-<text ToneInstructions>
-/ items = Tone_I
-</text>
 
-<item Tone_I>
-/ 1  = "Listen to the 2 tones played and rate how similar they are
-0 = least similar
-9 = most simialr"
-</item>
