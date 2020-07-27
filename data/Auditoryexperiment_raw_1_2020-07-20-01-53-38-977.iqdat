@@ -1,0 +1,3 @@
+date	time	group	subject	session	build	blocknum	trialnum	blockcode	trialcode	pretrialpause	posttrialpause	trialduration	trialtimeout	response	correct	latency	stimulusnumber1	stimulusitem1	stimulusonset1	stimulusnumber2	stimulusitem2	stimulusonset2
+2020-07-20	11:53:38	1	1	1	6.2.0	1	1	myblock	mytrial	0	0	0	0	57	0	2511	1	Welcome to the experiment !	235	0	0	0
+2020-07-20	11:53:38	1	1	1	6.2.0	2	1	practice	sound_test	0	0	4000	0	0	0	2897	2	Ga sound recording.wav	102	1	Ba sound recording.wav	1102
