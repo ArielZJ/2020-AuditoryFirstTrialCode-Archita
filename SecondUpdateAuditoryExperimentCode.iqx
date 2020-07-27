@@ -68,10 +68,6 @@ Press [Space Bar] to continue"
 / items = eightsounds
 / select = sequence
 </sound>
-<sound 8sounds>
-/ items = eightsounds
-
-</sound>
 
 
 <item eightsounds>
@@ -96,13 +92,30 @@ Press [space bar] to continue.")
 
 </text>
 <trial PracticeRun>
-/ stimulustimes = [0=myeightsounds; 50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton; 2500=8sounds]
+/ stimulustimes = [0=Practicesoundsparta; 50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton; 2500=Practicesoundspartb]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
 	trial.centremouse
 ]
 </trial>
+<sound Practicesoundsparta>
+/ items = Practicesounds
+/ select = noreplace
+</sound>
+<sound Practicesoundspartb>
+/items = Practicesounds
+/ select = noreplace
+</sound>
+
+
+<item Practicesounds>
+/1 = "Practice tone 1.wav"
+/2 = "Practice Tone 3.wav"
+/3 = "Practice Tone 2.wav"
+/4 = "Practice Tone 4.wav"
+</item>
+
 
 ******* The following are for coding in the answer choices for all the trials this will be done by clicking on the screen*****************************
 <text mousecentre>
