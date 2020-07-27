@@ -46,7 +46,7 @@ Please press the [space bar ] to continue."
 </item>
 *********Practice trial*******************
 <block Practice>
-/ trials = [1-8= Practicetrial;9-11=PracticeRun;12=Finishedpracticerun]
+/ trials = [1-9= Practicetrial;10-12=PracticeRun;13=Finishedpracticerun]
 
 </block>
 
@@ -60,13 +60,14 @@ Please press the [space bar ] to continue."
 </text>
 
 <item Practiceinstructions>
-/1 = "In this experiment you will be hearing the following 8 sounds
+/1 = "In this experiment you will be hearing the following 9 sounds
 Press [Space Bar] to continue"
 </item>
 
 <sound myeightsounds>
 / items = eightsounds
 / select = sequence
+/ playthrough = true
 </sound>
 
 
@@ -75,11 +76,13 @@ Press [Space Bar] to continue"
 /2 = "Medium Tone recording.wav"
 /3 = "High Tone sound recording.wav"
 /4 = "Ba sound recording.wav"
-/5= "Ka sound recording.wav"
-/6 = "Ta sound recording.wav"
-/7 = "Ga sound recording.wav"
-/8 = "Da sound recording.wav"
+/5= "Da sound recording.wav"
+/6 = "Ga sound recording.wav"
+/7 = "Pa sound recording.wav"
+/8 = "Ta sound recording.wav"
+/9 =  "Ka sound recording.wav"
 </item>
+
 <trial Finishedpracticerun>
 / stimulusframes = [1=Finishtex]
 / validresponse = (57)
@@ -98,14 +101,17 @@ Press [space bar] to continue.")
 / branch = [
 	trial.centremouse
 ]
+
 </trial>
 <sound Practicesoundsparta>
 / items = Practicesounds
 / select = noreplace
+/ playthrough = true
 </sound>
 <sound Practicesoundspartb>
 /items = Practicesounds
 / select = noreplace
+/ playthrough = true
 </sound>
 
 
@@ -231,58 +237,88 @@ Press [space bar] to continue.")
 
 <values>
 / myvalue = 1
+/trial_number = 1
 </values>
 
 <block InitialMonosyllabicSounds>
-/ trials = [1-25=noreplace(monosyl1,monosyl2,monosyl3,monosyl4, monosyl5)]
+/ trials = [1-36=noreplace(monosyl1,monosyl2,monosyl3,monosyl4, monosyl5, monosyl6)]
 </block>
 
 <trial monosyl1>
 / ontrialbegin = [values.myvalue=list.monosyl1items.nextindex]
-/ stimulustimes = [0=monosylsound;50 =stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton;2500= monosylname]
+/ stimulustimes = [0=monosylsound;50 =stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber;2500= Ba]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
 	trial.centremouse
 ]
+/ ontrialend = [
+	values.trial_number +=1
+]
+
 </trial>
 
 <trial monosyl2>
 / ontrialbegin = [values.myvalue=list.monosyl2items.nextindex]
-/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton;2500= monosylname]
+/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber;2500= Da]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
 	trial.centremouse
+]
+/ ontrialend = [
+	values.trial_number +=1
 ]
 </trial>
 
 <trial monosyl3>
 / ontrialbegin = [values.myvalue=list.monosyl3items.nextindex]
-/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton;2500= monosylname]
+/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber;2500= Ga]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
 	trial.centremouse
+]
+/ ontrialend = [
+	values.trial_number +=1
 ]
 </trial>
 
 <trial monosyl4>
 / ontrialbegin = [values.myvalue=list.monosyl4items.nextindex]
-/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton;2500= monosylname]
+/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber;2500= Pa]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
 	trial.centremouse
 ]
+/ ontrialend = [
+	values.trial_number +=1
+]
 </trial>
 <trial monosyl5>
 / ontrialbegin = [values.myvalue=list.monosyl5items.nextindex]
-/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton;2500= monosylname]
+/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber;2500= Ta]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
 	trial.centremouse
+]
+/ ontrialend = [
+	values.trial_number +=1
+]
+</trial>
+
+<trial monosyl6>
+/ ontrialbegin = [values.myvalue=list.monosyl6items.nextindex]
+/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber;2500= Ka]
+/ validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
+/ inputdevice = mouse
+/ branch = [
+	trial.centremouse
+]
+/ ontrialend = [
+	values.trial_number +=1
 ]
 </trial>
 
@@ -290,44 +326,88 @@ Press [space bar] to continue.")
 <sound monosylsound>
 / items = mymonosyl
 / select = values.myvalue
+/ playthrough = true
 </sound>
 
 <item mymonosyl>
 /1 = "Ba sound recording.wav"
-/2= "Ka sound recording.wav"
-/3 = "Ta sound recording.wav"
-/4 = "Ga sound recording.wav"
-/5 = "Da sound recording.wav"
+/2= "Da sound recording.wav"
+/3 = "Ga sound recording.wav"
+/4 = "Pa sound recording.wav"
+/5 = "Ta sound recording.wav"
+/6 = "Ka sound recording.wav"
 </item>
 
-<sound monosylname>
-/ items = mymonosyl
-/ select = script.currenttrial
+<sound Ba>
+/ items = ("Ba sound recording.wav")
+/ playthrough = true
+</sound>
+
+<sound Ka>
+/ items = ("Ka sound recording.wav")
+/ playthrough = true
+</sound>
+
+<sound Ta>
+/ items = ("Ta sound recording.wav")
+/ playthrough = true
 
 </sound>
 
+<sound Ga>
+/ items = ("Ga sound recording.wav")
+/ playthrough = true
+</sound>
+
+<sound Da>
+/ items = ("Da sound recording.wav")
+/ playthrough = true
+
+</sound>
+
+<sound Pa>
+/ items = ("Pa sound recording.wav")
+/ playthrough = true
+
+</sound>
+
+
 <list monosyl1items>
-/ poolsize = 5
+/ poolsize = 6
 </list>
 
 <list monosyl2items>
-/ poolsize = 5
+/ poolsize = 6
 </list>
 
 <list monosyl3items>
-/ poolsize = 5
+/ poolsize = 6
 </list>
 
 <list monosyl4items>
-/ poolsize = 5
+/ poolsize = 6
 </list>
 
 <list monosyl5items>
-/ poolsize = 5
+/ poolsize = 6
+</list>
+
+<list monosyl6items>
+/ poolsize = 6
+
 </list>
 
 
+<text Questionnumber>
+/ items = ("You have finished <%values.trial_number%> of 45 questions")
+/ position = (50%,90%)
+</text>
+
+
+
+
 ************Trial for distinguishing three different tones***********************
+
 
 
 <block mytone>
@@ -336,31 +416,40 @@ Press [space bar] to continue.")
 
 <trial tone1>
 / ontrialbegin = [values.myvalue=list.tone1items.nextindex]
-/ stimulustimes = [0=tones;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton;2500= trialname]
+/ stimulustimes = [0=tones;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber;2500=low]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
 	trial.centremouse
+]
+/ ontrialend = [
+	values.trial_number +=1
 ]
 </trial>
 
 <trial tone2>
 / ontrialbegin = [values.myvalue=list.tone2items.nextindex]
-/ stimulustimes = [0=tones;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton;2500= trialname]
+/ stimulustimes = [0=tones;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber;2500= medium]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
 	trial.centremouse
 ]
+/ ontrialend = [
+	values.trial_number +=1
+]
 </trial>
 
 <trial tone3>
 / ontrialbegin = [values.myvalue=list.tone3items.nextindex]
-/ stimulustimes = [0=tones;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton;2500= trialname]
+/ stimulustimes = [0=tones;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber;2500= High]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
 	trial.centremouse
+]
+/ ontrialend = [
+	values.trial_number +=1
 ]
 </trial>
 
@@ -377,11 +466,24 @@ Press [space bar] to continue.")
 
 </item>
 
-<sound trialname>
-/ items = mytones
-/ select = script.currenttrial
+
+<sound low>
+/ items = ("Low Tone Sound Recording.wav")
+/ playthrough = true
+</sound>
+
+<sound medium>
+/ items = ("Medium Tone recording.wav")
+/ playthrough = true
+</sound>
+
+<sound High>
+/ items = ("High Tone sound recording.wav")
+/ playthrough = true
 
 </sound>
+
+
 
 <list tone1items>
 / poolsize = 3
