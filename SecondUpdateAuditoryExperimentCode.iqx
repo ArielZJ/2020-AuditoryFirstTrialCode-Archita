@@ -46,22 +46,39 @@ Please press the [space bar ] to continue."
 </item>
 *********Practice trial*******************
 <block Practice>
-/ trials = [1-9= Practicetrial;10-12=PracticeRun;13=Finishedpracticerun]
+/ trials = [1-9= Practicetrial; 10= PracticeReady ;11-13=PracticeRun;14=Finishedpracticerun]
 
 </block>
 
 <trial Practicetrial>
 / stimulusframes = [1 = Pracinstructionstext; 1 = myeightsounds]
 / validresponse = (57)
+/ ontrialend = [
+	values.Practice_sound_value +=1
+]
 
 </trial>
 <text Pracinstructionstext>
 / items = Practiceinstructions
 </text>
+<trial PracticeReady>
+/ stimulusframes = [1 = PracticeRead]
+/ validresponse = (57)
+
+</trial>
+
+<text PracticeRead>
+/ items = ("You are now going to do a few practice trials to make you become more familiar with the experiment
+Please press the [space bar] to continue.")
+</text>
+
+
 
 <item Practiceinstructions>
 /1 = "In this experiment you will be hearing the following 9 sounds
-Press [Space Bar] to continue"
+Press [Space Bar] to continue
+sound <%values.Practice_sound_value%> of 9"
+
 </item>
 
 <sound myeightsounds>
@@ -95,7 +112,7 @@ Press [space bar] to continue.")
 
 </text>
 <trial PracticeRun>
-/ stimulustimes = [0=Practicesoundsparta; 50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton; 2500=Practicesoundspartb]
+/ stimulustimes = [0=Practicesoundsparta; 50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, dissimilaritylevel, Dissimilar, Similar; 2500=Practicesoundspartb]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
@@ -125,7 +142,7 @@ Press [space bar] to continue.")
 
 ******* The following are for coding in the answer choices for all the trials this will be done by clicking on the screen*****************************
 <text mousecentre>
-/ items = ("Please click the centre square to continue")
+/ items = ("Please click the  red centre square to continue")
 / txbgcolor = black
 / txcolor = white
 / size = (15%,15%)
@@ -135,7 +152,7 @@ Press [space bar] to continue.")
 
 <trial centremouse>
 / inputdevice = mouse
-/ stimulusframes = [1= Quit_Notice, mousecentre, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton]
+/ stimulusframes = [1= Quit_Notice, mousecentre, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, dissimilaritylevel, Dissimilar, Similar]
 / recorddata = true
 / validresponse = (centrebutton)
 </trial>
@@ -143,8 +160,8 @@ Press [space bar] to continue.")
 
 <text stimulus>
 / items = ("Please listen to the following sounds and determine how similar they are
-0= most dissimilar
-7 = most similar")
+0= most similar
+7 = most dissimilar")
 / position = (80%, 50%)
 </text>
 <text Quit_Notice>
@@ -155,8 +172,8 @@ Press [space bar] to continue.")
 
 <text zerobutton>
 / items = ("0")
-/ size = (10%, 10%)
-/ position = (20%, 20%)
+/ size = (7%, 7%)
+/ position = (30%, 25%)
 / txbgcolor = black
 / txcolor = white
 / vjustify = center
@@ -164,17 +181,54 @@ Press [space bar] to continue.")
 
 <text onebutton>
 / items = ("1")
-/size = (10%, 10%)
-/ position = (35%, 20%)
+/size = (7%, 7%)
+/ position = (25%, 35%)
+/ txbgcolor = black
+/ txcolor = white
+/ vjustify = center
+
+</text>
+
+<text twobutton>
+/ items = ("2")
+/size = (7%, 7%)
+/ position = (25%, 45%)
 / txbgcolor = black
 / txcolor = white
 / vjustify = center
 </text>
 
-<text twobutton>
-/ items = ("2")
-/size = (10%, 10%)
-/ position = (50%, 20%)
+<text threebutton>
+/ items = ("3")
+/size = (7%, 7%)
+/ position = (30%, 55%)
+/ txbgcolor = black
+/ txcolor = white
+/ vjustify = center
+</text>
+
+<text fourbutton>
+/ items = ("4")
+/size = (7%, 7%)
+/ position = (40%, 55%)
+/ txbgcolor = black
+/ txcolor = white
+/ vjustify = center
+</text>
+
+<text fivebutton>
+/ items = ("5")
+/size = (7%, 7%)
+/ position = (45%, 45%)
+/ txbgcolor = black
+/ txcolor = white
+/ vjustify = center
+</text>
+
+<text sixbutton>
+/ items = ("6")
+/size = (7%, 7%)
+/ position = (45%, 35%)
 / txbgcolor = black
 / txcolor = white
 / vjustify = center
@@ -182,8 +236,8 @@ Press [space bar] to continue.")
 
 <text sevenbutton>
 / items = ("7")
-/size = (10%, 10%)
-/ position = (20%, 40%)
+/size = (7%, 7%)
+/ position = (40%, 25%)
 / txbgcolor = black
 / txcolor = white
 / vjustify = center
@@ -193,51 +247,34 @@ Press [space bar] to continue.")
 / items = ("centre")
 /size = (10%, 10%)
 / position = (35%, 40%)
-/ txbgcolor = black
+/ txbgcolor = red
 / txcolor = white
 / vjustify = center
 </text>
 
-<text threebutton>
-/ items = ("3")
-/size = (10%, 10%)
-/ position = (50%, 40%)
-/ txbgcolor = black
-/ txcolor = white
-/ vjustify = center
+<text dissimilaritylevel>
+/ items = ("Dissimilarity Level")
+/ position = (35%, 15%)
+/ txcolor = red
 </text>
 
-<text sixbutton>
-/ items = ("6")
-/size = (10%, 10%)
-/ position = (20%, 60%)
-/ txbgcolor = black
-/ txcolor = white
-/ vjustify = center
+<text Similar>
+/ items = ("Similar")
+/ position = (15%, 40%)
+/ txcolor = red
 </text>
 
-<text fivebutton>
-/ items = ("5")
-/size = (10%, 10%)
-/ position = (35%, 60%)
-/ txbgcolor = black
-/ txcolor = white
-/ vjustify = center
-</text>
-
-<text fourbutton>
-/ items = ("4")
-/size = (10%, 10%)
-/ position = (50%, 60%)
-/ txbgcolor = black
-/ txcolor = white
-/ vjustify = center
+<text Dissimilar>
+/ items = ("Dissimilar")
+/ position = (55%, 40%)
+/ txcolor = red 
 </text>
 *************First monosylabic discrimination block*********************
 
 <values>
 / myvalue = 1
 /trial_number = 1
+/Practice_sound_value =1
 </values>
 
 <block InitialMonosyllabicSounds>
@@ -246,7 +283,7 @@ Press [space bar] to continue.")
 
 <trial monosyl1>
 / ontrialbegin = [values.myvalue=list.monosyl1items.nextindex]
-/ stimulustimes = [0=monosylsound;50 =stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber;2500= Ba]
+/ stimulustimes = [0=monosylsound;50 =stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber, dissimilaritylevel, Dissimilar, Similar;2500= Ba]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
@@ -260,7 +297,7 @@ Press [space bar] to continue.")
 
 <trial monosyl2>
 / ontrialbegin = [values.myvalue=list.monosyl2items.nextindex]
-/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber;2500= Da]
+/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber, dissimilaritylevel, Dissimilar, Similar;2500= Da]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
@@ -273,7 +310,7 @@ Press [space bar] to continue.")
 
 <trial monosyl3>
 / ontrialbegin = [values.myvalue=list.monosyl3items.nextindex]
-/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber;2500= Ga]
+/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber, dissimilaritylevel, Dissimilar, Similar;2500= Ga]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
@@ -286,7 +323,7 @@ Press [space bar] to continue.")
 
 <trial monosyl4>
 / ontrialbegin = [values.myvalue=list.monosyl4items.nextindex]
-/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber;2500= Pa]
+/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber, dissimilaritylevel, Dissimilar, Similar;2500= Pa]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
@@ -298,7 +335,7 @@ Press [space bar] to continue.")
 </trial>
 <trial monosyl5>
 / ontrialbegin = [values.myvalue=list.monosyl5items.nextindex]
-/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber;2500= Ta]
+/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber, dissimilaritylevel, Dissimilar, Similar;2500= Ta]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
@@ -311,7 +348,7 @@ Press [space bar] to continue.")
 
 <trial monosyl6>
 / ontrialbegin = [values.myvalue=list.monosyl6items.nextindex]
-/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber;2500= Ka]
+/ stimulustimes = [0=monosylsound;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber, dissimilaritylevel, Dissimilar, Similar;2500= Ka]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
@@ -416,7 +453,7 @@ Press [space bar] to continue.")
 
 <trial tone1>
 / ontrialbegin = [values.myvalue=list.tone1items.nextindex]
-/ stimulustimes = [0=tones;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber;2500=low]
+/ stimulustimes = [0=tones;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber, dissimilaritylevel, Dissimilar, Similar;2500=low]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
@@ -429,7 +466,7 @@ Press [space bar] to continue.")
 
 <trial tone2>
 / ontrialbegin = [values.myvalue=list.tone2items.nextindex]
-/ stimulustimes = [0=tones;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber;2500= medium]
+/ stimulustimes = [0=tones;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber, dissimilaritylevel, Dissimilar, Similar;2500= medium]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
@@ -442,7 +479,7 @@ Press [space bar] to continue.")
 
 <trial tone3>
 / ontrialbegin = [values.myvalue=list.tone3items.nextindex]
-/ stimulustimes = [0=tones;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber;2500= High]
+/ stimulustimes = [0=tones;50 = stimulus, Quit_Notice, zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton, centrebutton, Questionnumber, dissimilaritylevel, Dissimilar, Similar;2500= High]
 / validresponse = (zerobutton, onebutton, twobutton, threebutton, fourbutton, fivebutton, sixbutton, sevenbutton)
 / inputdevice = mouse
 / branch = [
