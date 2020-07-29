@@ -46,9 +46,23 @@ Please press the [space bar ] to continue."
 </item>
 *********Practice trial*******************
 <block Practice>
-/ trials = [1-9= Practicetrial; 10= PracticeReady ;11-13=PracticeRun;14=Finishedpracticerun]
+/ trials = [1= calibration; 2-10= Practicetrial; 11= PracticeReady ;12-14=PracticeRun;15=Finishedpracticerun]
 
 </block>
+<trial calibration>
+/ stimulusframes = [1= calibrationsound, calibrationinstructions]
+/ validresponse = (57)
+</trial>
+
+<sound calibrationsound>
+/ items = ("Calibration.wav")
+</sound>
+
+<text calibrationinstructions>
+/ items = ("Please ensure that you can hear the following tone clearly.
+To continue on in the experiment please press the [space bar].")
+</text>
+
 
 <trial Practicetrial>
 / stimulusframes = [1 = Pracinstructionstext; 1 = myeightsounds]
